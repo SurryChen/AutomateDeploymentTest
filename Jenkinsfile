@@ -17,14 +17,7 @@ pipeline {
             }
             // 如果已经有项目，那就更新，如果没有，那就克隆
             steps {
-                sh 'if [ -d "AutomateDeploymentTest" ];  then
-                        cd AutomateDeploymentTest &&
-                        git pull &&
-                        git checkout master;
-                    else
-                        git clone https://github.com/SurryChen/AutomateDeploymentTest.git &&
-                        git checkout master;
-                    fi'
+                sh 'if [ -d "AutomateDeploymentTest" ];  then cd AutomateDeploymentTest && git pull && git checkout master; else git clone https://github.com/SurryChen/AutomateDeploymentTest.git && git checkout master; fi'
             }
         }
         // 第二步，使用Maven编译项目
