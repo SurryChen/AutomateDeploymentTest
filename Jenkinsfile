@@ -4,15 +4,8 @@ pipeline {
     stages {
         // 第一步：使用Git更新或者下载代码
         stage('GetCode') {
-            // 使用Docker部署Git获取代码
-            agent {
-                docker {
-                    image 'git'
-                }
-            }
-            // 如果已经有项目，那就更新，如果没有，那就克隆
             steps {
-                sh 'if [ -d "AutomateDeploymentTest" ];  then cd AutomateDeploymentTest && git pull && git checkout master; else git clone https://github.com/SurryChen/AutomateDeploymentTest.git && git checkout master; fi'
+                git branch: 'master', url: 'https://github.com/yourusername/yourrepository.git'
             }
         }
         // 第二步，使用Maven编译项目
@@ -25,18 +18,13 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd AutomateDeploymentTest && mvn -DskipTests clean package'
+                sh 'mvn -DskipTests clean package'
             }
         }
         // 第三步，使用JDK运行项目
         stage('Deploy') {
-            agent {
-                docker {
-                    image 'openjdk:11'
-                }
-            }
             steps {
-                sh 'cd AutomateDeploymentTest && java -jar /target/auto.jar'
+                sh 'java -jar /target/auto.jar'
             }
         }
     }
