@@ -1,10 +1,5 @@
 pipeline {
-    // JDK还是需要全局的
-    agent {
-        docker {
-            image 'openjdk:11'
-        }
-    }
+    agent none
     // 多阶段
     stages {
         // 第一步：使用Git更新或者下载代码
@@ -35,6 +30,11 @@ pipeline {
         }
         // 第三步，使用JDK运行项目
         stage('Deploy') {
+            agent {
+                docker {
+                    image 'openjdk:11'
+                }
+            }
             steps {
                 sh 'cd AutomateDeploymentTest && java -jar /target/auto.jar'
             }
