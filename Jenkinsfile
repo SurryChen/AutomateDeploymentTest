@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     // 多阶段
     stages {
         // 第一步：使用Git更新或者下载代码
