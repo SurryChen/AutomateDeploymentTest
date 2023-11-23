@@ -58,11 +58,11 @@ jobs:
 
         # 连接服务器并更新Docker镜像
       - name: Run command on server
-        uses: garygrossgarten/github-action-ssh@release
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          privateKey: ${{ secrets.SSH_KEY }}
-          command: |
+          key: ${{ secrets.SSH_KEY }}
+          script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest 
             docker run -d --name my_container -p ${{ secrets.PORT }}:${{ secrets.PORT }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
