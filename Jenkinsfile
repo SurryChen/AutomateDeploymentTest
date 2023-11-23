@@ -5,7 +5,7 @@ pipeline {
         // 第一步：使用Git更新或者下载代码
         stage('GetCode') {
             steps {
-                git branch: 'master', url: 'https://github.com/yourusername/yourrepository.git'
+                sh 'git clone https://github.com/yourusername/yourrepository.git'
             }
         }
         // 第二步，使用Maven编译项目
