@@ -13,6 +13,11 @@ public class AutoController {
         return "Success!";
     }
 
+    @GetMapping("/dev")
+    public String dev() {
+        return "Dev Success!";
+    }
+
     @GetMapping("/deploys")
     public String deploys() {
         return "You are success!";
