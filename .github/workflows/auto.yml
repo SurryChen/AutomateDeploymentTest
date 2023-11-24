@@ -7,20 +7,12 @@ on:
   push:
     branches: ["master"]
 
-  # 允许手动触发
-  workflow_dispatch:
-
 # 设置并发部署方案
 concurrency:
-  # 只有设置了一个组，而一个组只能有一个在并发部署
+  # 全局归为一个组，而一个组只能有一个job在部署
   group: "deploy"
-  # 不取消冲突的部署，而是按照排队进行
+  # 不取消冲突的部署，而是按序进行
   cancel-in-progress: false
-
-# 默认进入Bash执行
-defaults:
-  run:
-    shell: bash
 
 # 构建流水线jobs
 jobs:
