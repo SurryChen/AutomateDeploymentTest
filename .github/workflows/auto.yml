@@ -1,17 +1,14 @@
 # 名称
 name: Auto Deploy Test
 
+# 触发
 on:
   # 触发事件：master分支有更新
   push:
     branches: ["master"]
 
-  # 允许手动更新
+  # 允许手动触发
   workflow_dispatch:
-
-# 获取读取权限
-permissions:
-  contents: read
 
 # 设置并发部署方案
 concurrency:
