@@ -6,6 +6,8 @@ on:
   # 触发事件：master分支有更新
   push:
     branches: ["master"]
+  # 支持手动触发
+  workflow_dispatch:
 
 # 设置并发部署方案
 concurrency:
